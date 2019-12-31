@@ -4,9 +4,9 @@ Apache POI Perl developement environoment and examples
 ### ENV:
 * CentOS 6x
 * Java 1.8
-* POI 3.17
-* Inline - Write Perl Subroutines in Other Programming Languages  
-* Inline::Java - Write Perl classes in Java.  
+* [POI 3.17](https://poi.apache.org/)
+* [Perl Inline](https://metacpan.org/pod/Inline) - Write Perl Subroutines in Other Programming Languages  
+* [Perl Inline::Java](https://metacpan.org/pod/Inline::Java) - Write Perl classes in Java.  
 * Perl 5.12
 
 ### Perl Module:
@@ -15,6 +15,10 @@ POI.pm
 ### Perl script:
 push_custom_info.pl
 
+### JVM Commands
+* % perl -MInline::Java::Server=start   
+* % perl -MInline::Java::Server=stop   
+* % perl -MInline::Java::Server=restart
 ### Sample input file:
 doc_test_file.doc
 
