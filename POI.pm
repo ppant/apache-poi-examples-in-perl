@@ -13,8 +13,8 @@ sub new {
         return POI::POI->new();
     }
  1;
-__DATA__
-__Java__
+    __DATA__
+    __Java__
 
 //Import POI classes
 import org.apache.poi.hpsf.CustomProperties;
@@ -40,7 +40,7 @@ class POI {
 }
 /* function for pushing custom variables */
 
-public void PushCustomProperties(String filename, String manname, String docname, String doctitle, String revision, String author) {
+public String PushProperties(String filename, String docname, String doctitle, String revision, String author) {
 	  try {
 		File poiFilesystem = new File(filename);
      /* Open the POI filesystem. */
@@ -94,14 +94,14 @@ public void PushCustomProperties(String filename, String manname, String docname
         dsi.setCategory("Quality Manual");  
 		dsi.setCompany("PRADEEPPANT.COM");
 		dsi.setManager("PK PANT");
+		//Pushing Custom properties
         CustomProperties cp = dsi.getCustomProperties();
-	if (cp == null)
-        cp = new CustomProperties();
+	if (cp == null)        
 		cp = new CustomProperties();
-		cp.put("Manual Name",manname);
 		cp.put("Document Name",docname);
 		cp.put ("Document Title",doctitle);
 		cp.put("Revision number",revision);
+		cp.put("Author",author);
 		cp.put("Date", new Date());
     
      /* Write the custom properties back to the document summary information. */
@@ -119,6 +119,6 @@ public void PushCustomProperties(String filename, String manname, String docname
    catch( Exception e ) {
      e.printStackTrace();
    }   
-  } // end of GetCustomInfoForView
+   return docname;
+  } // end of PushProperties
 } //end of public POI
- 
