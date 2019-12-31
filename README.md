@@ -14,3 +14,9 @@ POI.pm
 
 Perl script:
 push_custom_info.pl
+
+Sample input file:
+doc_test_file.doc
+
+Sample output file:
+doc_test_file_out.doc
