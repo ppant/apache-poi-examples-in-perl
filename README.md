@@ -1,22 +1,22 @@
 ## Apache POI Examples using Perl
 Apache POI Perl developement environoment and examples
 
-ENV:
-### CentOS 6x
-### Java 1.8
-### POI 3.17
-### Perl Inline module
-### Perl Inline::Java module
-### Perl 5.12
+### ENV:
+* CentOS 6x
+* Java 1.8
+* POI 3.17
+* Inline - Write Perl Subroutines in Other Programming Languages  
+* Inline::Java - Write Perl classes in Java.  
+* Perl 5.12
 
-## Perl Module:
+### Perl Module:
 POI.pm
 
-## Perl script:
+### Perl script:
 push_custom_info.pl
 
-## Sample input file:
+### Sample input file:
 doc_test_file.doc
 
-## Sample output file:
+### Sample output file:
 doc_test_file_out.doc
