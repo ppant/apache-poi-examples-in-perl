@@ -4,7 +4,6 @@ use warnings;
 use Inline Java => "DATA", SHARED_JVM => 1;
 
 ### CONSTRUCTOR
-
 ###############################################################
 # new()
 ###############################################################     
@@ -14,9 +13,8 @@ sub new {
         return POI::POI->new();
     }
  1;
-
-    __DATA__
-    __Java__
+__DATA__
+__Java__
 
 //Import POI classes
 import org.apache.poi.hpsf.CustomProperties;
@@ -40,11 +38,9 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 class POI {
     public POI(){
 }
-/**********************************************************************************************/
 /* function for pushing custom variables */
-/**********************************************************************************************/
 
-public void PushCustomProperties(String filename, String docname, String docowner, String versionno, String creationdate) {
+public void PushCustomProperties(String filename, String manname, String docname, String doctitle, String revision, String author) {
 	  try {
 		File poiFilesystem = new File(filename);
      /* Open the POI filesystem. */
@@ -56,8 +52,7 @@ public void PushCustomProperties(String filename, String docname, String docowne
         DirectoryEntry dir = poifs.getRoot();
 		SummaryInformation si;
             
-        try
-        {
+        try {
             DocumentEntry siEntry = (DocumentEntry)
                 dir.getEntry(SummaryInformation.DEFAULT_STREAM_NAME);
             DocumentInputStream dis = new DocumentInputStream(siEntry);
@@ -65,26 +60,25 @@ public void PushCustomProperties(String filename, String docname, String docowne
             dis.close();
             si = new SummaryInformation(ps);
         }
-        catch (FileNotFoundException ex)
-        {
+        catch (FileNotFoundException ex) {
             /* There is no summary information yet. We have to create a new
              * one. */
             si = PropertySetFactory.newSummaryInformation();
         }
 
-        /* Change the author to "pp". Any former author value will
+        /* Change the author to "Pradeep Pant". Any former author value will
          * be lost. If there has been no author yet, it will be created. */
-                si.setAuthor("test_user");		
+        si.setAuthor("Pradeep Pant");
+		si.setTitle(doctitle);
 		si.setSubject("Car parts manual");
 		si.setComments("Testing manual for making car parts");
 		si.setKeywords("automobiles");
 		si.setRevNumber("2.0");
-		//System.out.println("Author changed to " + si.getAuthor() + ".");
+		System.out.println("Author changed to " + si.getAuthor() + ".");
 		
         /* Read the document summary information. */
         DocumentSummaryInformation dsi;
-        try
-        {
+        try {
             DocumentEntry dsiEntry = (DocumentEntry)
 			dir.getEntry(DocumentSummaryInformation.DEFAULT_STREAM_NAME);
             DocumentInputStream dis = new DocumentInputStream(dsiEntry);
@@ -92,29 +86,28 @@ public void PushCustomProperties(String filename, String docname, String docowne
             dis.close();
             dsi = new DocumentSummaryInformation(ps);
         }
-        catch (FileNotFoundException ex)
-        {
+        catch (FileNotFoundException ex) {
             /* There is no document summary information yet. We have to create a
              * new one. */
             dsi = PropertySetFactory.newDocumentSummaryInformation();
         }
         dsi.setCategory("Quality Manual");  
 		dsi.setCompany("PRADEEPPANT.COM");
-		dsi.setManager("PPANT");
-		
-     //Get the custom info obj
-     CustomProperties cp = dsi.getCustomProperties();
-     if (cp == null)        
+		dsi.setManager("PK PANT");
+        CustomProperties cp = dsi.getCustomProperties();
+	if (cp == null)
         cp = new CustomProperties();
-	cp.put("Document name",docname);
-        cp.put("Document owner",docowner);
-        cp.put("Version number",versionno);
-	cp.put("Creation date", creationdate);
+		cp = new CustomProperties();
+		cp.put("Manual Name",manname);
+		cp.put("Document Name",docname);
+		cp.put ("Document Title",doctitle);
+		cp.put("Revision number",revision);
+		cp.put("Date", new Date());
     
      /* Write the custom properties back to the document summary information. */
-     dsi.setCustomProperties(cp);
-	 si.write(dir, SummaryInformation.DEFAULT_STREAM_NAME);
-     dsi.write(dir, DocumentSummaryInformation.DEFAULT_STREAM_NAME);
+		dsi.setCustomProperties(cp);
+		si.write(dir, SummaryInformation.DEFAULT_STREAM_NAME);
+		dsi.write(dir, DocumentSummaryInformation.DEFAULT_STREAM_NAME);
 	/* Write the POI filesystem back to the original file. Please note that
          * in production code you should never write directly to the origin
          * file! In case of a writing error everything would be lost. */
@@ -125,9 +118,7 @@ public void PushCustomProperties(String filename, String docname, String docowne
    } // end of try
    catch( Exception e ) {
      e.printStackTrace();
-   }
-   return docname;
-  } // end of PushCustomProperties   
-
+   }   
+  } // end of GetCustomInfoForView
 } //end of public POI
  
