@@ -11,6 +11,7 @@ Apache POI Perl developement environoment and examples
 
 ### Perl Module:
 POI.pm
+POIPlus.pm
 
 ### Perl script:
 push_custom_info.pl
@@ -21,6 +22,8 @@ push_custom_info.pl
 * % perl -MInline::Java::Server=restart
 ### Sample input file:
 doc_test_file.doc
+docx_test_file.docx
 
 ### Sample output file:
 doc_test_file_out.doc
+docx_test_file_out.docx
