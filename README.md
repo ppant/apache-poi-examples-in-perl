@@ -28,6 +28,7 @@ docx_test_file.docx
 doc_test_file_out.doc
 docx_test_file_out.docx
 
-Thanks, my office Ockham b.v.b.a (www.ockham.be)
+
+Thanks to my office Ockham B.V.B.A (www.ockham.be) 
 
 
