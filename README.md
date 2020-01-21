@@ -27,3 +27,7 @@ docx_test_file.docx
 ### Sample output file:
 doc_test_file_out.doc
 docx_test_file_out.docx
+
+Thanks, my office Ockham b.v.b.a (www.ockham.be)
+
+
